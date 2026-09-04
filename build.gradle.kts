@@ -43,6 +43,9 @@ allprojects{
     tasks.withType<JavaCompile>().configureEach{
         options.encoding = "UTF-8"
         options.compilerArgs.add("-Xlint:-options")
+        // Allow annotation processors that rely on internal javac APIs (required by EntityAnno)
+        options.compilerArgs.addAll(listOf("--add-exports", "jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED"))
+        options.compilerArgs.addAll(listOf("--add-opens", "jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED"))
         sourceCompatibility = "17"
         targetCompatibility = "17"
     }
