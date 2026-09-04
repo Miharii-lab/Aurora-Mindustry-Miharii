@@ -60,6 +60,15 @@ allprojects{
         } else {
             _fork.jvmArgs!!.addAll(_extraJvmArgs)
         }
+        // Also pass add-exports/opens via javac -J flags to ensure the compiler JVM receives them
+        options.compilerArgs.addAll(listOf(
+            "-J--add-exports=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED",
+            "-J--add-opens=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED",
+            "-J--add-exports=jdk.compiler/com.sun.tools.javac.model=ALL-UNNAMED",
+            "-J--add-opens=jdk.compiler/com.sun.tools.javac.model=ALL-UNNAMED",
+            "-J--add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED",
+            "-J--add-opens=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED"
+        ))
         sourceCompatibility = "17"
         targetCompatibility = "17"
     }
