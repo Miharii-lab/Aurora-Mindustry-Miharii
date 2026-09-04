@@ -1,0 +1,9 @@
+name: aurora-ai-companion
+displayName: Aurora AI Companion
+author: Miharii
+version: 2.0.4.6
+minGameVersion: 159.7
+main: aurora.AuroraMod
+description: Aurora is a lightweight AI companion with an adaptive mind, a physical flying body, episodic and exploration memory, owner system, mission recovery, contextual communication, mining, repair, intelligent construction and tactical combat.
+dependencies: []
+hidden: false
