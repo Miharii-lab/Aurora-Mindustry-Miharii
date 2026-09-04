@@ -105,7 +105,7 @@ public final class MiningSystem{
     }
 
     public static boolean inventoryNearlyFull(Unit unit){
-        return unit != null && unit.stack != null && unit.stack.amount >= Math.max(1, unit.itemCapacity - 1);
+        return unit != null && unit.stack != null && unit.stack.amount >= Math.max(1, unit.type.itemCapacity - 1);
     }
 
     /** Deposits the carried stack into the team's core when the unit reaches it. */
