@@ -1,6 +1,6 @@
 package aurora.systems;
 
-import mindustry.ai.types.AIController;
+import mindustry.entities.units.AIController;
 import mindustry.gen.Building;
 import mindustry.gen.Unit;
 import mindustry.world.meta.BlockFlag;

@@ -1,6 +1,6 @@
 package aurora.brain;
 
-import mindustry.ai.types.AIController;
+import mindustry.entities.units.AIController;
 import mindustry.ai.types.BuilderAI;
 import mindustry.ai.types.MinerAI;
 
