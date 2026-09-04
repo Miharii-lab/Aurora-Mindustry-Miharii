@@ -7,7 +7,7 @@ import mindustry.type.Item;
 import mindustry.world.Block;
 import mindustry.world.blocks.production.Drill;
 import mindustry.world.meta.BlockFlag;
-import mindustry.world.meta.Category;
+import mindustry.type.Category;
 
 /** Measures actual item flow, resource availability and power balance. */
 public final class EconomyAnalyzer implements BottleneckAnalyzer{

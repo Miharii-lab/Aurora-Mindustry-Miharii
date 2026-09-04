@@ -46,7 +46,14 @@ allprojects{
         // Fork the javac process and pass module exports/open flags to the compiler JVM so
         // annotation processors that use internal javac APIs (EntityAnno) can run under JDK17+
         options.isFork = true
-        val _extraJvmArgs = listOf("--add-exports=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED", "--add-opens=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED")
+        val _extraJvmArgs = listOf(
+            "--add-exports=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED",
+            "--add-opens=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED",
+            "--add-exports=jdk.compiler/com.sun.tools.javac.model=ALL-UNNAMED",
+            "--add-opens=jdk.compiler/com.sun.tools.javac.model=ALL-UNNAMED",
+            "--add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED",
+            "--add-opens=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED"
+        )
         val _fork = options.forkOptions
         if (_fork.jvmArgs == null) {
             _fork.jvmArgs = _extraJvmArgs.toMutableList()
