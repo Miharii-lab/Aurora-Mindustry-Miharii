@@ -101,3 +101,15 @@ tasks.register<Zip>("sourceZip") {
         exclude("*.zip")
     }
 }
+
+tasks.register<Copy>("deploy") {
+    dependsOn("jar")
+    from(layout.buildDirectory.dir("libs"))
+    into(layout.buildDirectory.dir("release"))
+    rename { filename ->
+        when {
+            filename.contains("AuroraAICompanionDesktop") -> filename.replace("Desktop", "")
+            else -> filename
+        }
+    }
+}
