@@ -47,10 +47,11 @@ allprojects{
         // annotation processors that use internal javac APIs (EntityAnno) can run under JDK17+
         options.isFork = true
         val _extraJvmArgs = listOf("--add-exports=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED", "--add-opens=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED")
-        if (options.forkOptions.jvmArgs == null) {
-            options.forkOptions.jvmArgs = _extraJvmArgs.toMutableList()
+        val _fork = options.forkOptions
+        if (_fork.jvmArgs == null) {
+            _fork.jvmArgs = _extraJvmArgs.toMutableList()
         } else {
-            options.forkOptions.jvmArgs.addAll(_extraJvmArgs)
+            _fork.jvmArgs!!.addAll(_extraJvmArgs)
         }
         sourceCompatibility = "17"
         targetCompatibility = "17"
