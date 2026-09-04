@@ -87,7 +87,8 @@ public final class DefenseProposal {
 
     private boolean tryEntry(Unit unit, PlanEntry p, AuroraProfile profile){
         if(p.block == Blocks.copperWall){
-            Block selected = ConstructionSystem.queueWithAlternatives(unit, new Block[]{Blocks.copperWall, Blocks.leadWall, Blocks.titaniumWall}, p.x, p.y, p.rotation, 6, profile);
+            // leadWall was removed/renamed in v159.7; try copper -> titanium fallback instead
+            Block selected = ConstructionSystem.queueWithAlternatives(unit, new Block[]{Blocks.copperWall, Blocks.titaniumWall}, p.x, p.y, p.rotation, 6, profile);
             return selected != null;
         }
         if(p.block == Blocks.duo){

@@ -81,7 +81,8 @@ public final class AuroraContent {
                 shootY = 2f;
                 recoil = 1f;
                 shake = 0.2f;
-                bullet = Bullets.standardCopper;
+            // v159.7 no longer exposes standardCopper; use placeholder as a safe default
+            bullet = Bullets.placeholder;
             }});
         }};
 

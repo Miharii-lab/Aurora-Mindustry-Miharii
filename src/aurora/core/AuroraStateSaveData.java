@@ -8,6 +8,7 @@ import mindustry.gen.Unit;
 import mindustry.io.SaveFileReader;
 import aurora.personality.AuroraMood;
 import aurora.planning.DefenseProposal;
+import arc.struct.IntSeq;
 
 /** Persists Aurora's runtime state, episodic memory and exploration memory. */
 public final class AuroraStateSaveData implements SaveFileReader.CustomChunk {
@@ -40,7 +41,9 @@ public final class AuroraStateSaveData implements SaveFileReader.CustomChunk {
             for(AuroraLearning.Entry e : p.learning.entries()){
                 out.writeUTF(e.key()); out.writeInt(e.attempts()); out.writeInt(e.successes()); out.writeInt(e.failures());
             }
-            int[] visited = p.exploration.raw().toArray();
+            // IntSet.iterator().toArray() returns an IntSeq; convert to int[] for serialization
+            IntSeq visitedSeq = p.exploration.raw().iterator().toArray();
+            int[] visited = visitedSeq.toArray();
             out.writeInt(Math.min(visited.length, 512));
             for(int i = 0; i < visited.length && i < 512; i++) out.writeInt(visited[i]);
         }
