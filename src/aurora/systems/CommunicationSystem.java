@@ -13,7 +13,7 @@ public final class CommunicationSystem {
     private CommunicationSystem(){}
 
     public static void event(Player player, AuroraProfile profile, String key, String category, String detail, AuroraMood mood){
-        if(player == null || !player.isValid() || profile == null) return;
+        if(player == null || !player.isAdded() || profile == null) return;
         if(key == null) key = category + ":" + detail;
         if(!key.equals(profile.lastEventKey)){
             profile.memory.remember(category, detail, player.x, player.y);
@@ -32,7 +32,7 @@ public final class CommunicationSystem {
     }
 
     public static void say(Player player, String message){
-        if(player == null || !player.isValid()) return;
+        if(player == null || !player.isAdded()) return;
         player.sendMessage(AURORA_PINK + "Aurora:[white] " + message);
     }
 

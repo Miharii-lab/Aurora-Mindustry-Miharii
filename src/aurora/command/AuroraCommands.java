@@ -149,7 +149,7 @@ public final class AuroraCommands {
 
         float x = player.x;
         float y = player.y;
-        Unit spawned = AuroraContent.aurora.spawn(player.team(), x, y, player.rotation(), unit -> {
+        Unit spawned = AuroraContent.aurora.spawn(player.team(), x, y, 0f, unit -> {
             AuroraRegistry.assignOwner(unit, player);
             AuroraProfile profile = AuroraRegistry.profile(unit);
             profile.task = AuroraTask.FOLLOW;
@@ -225,7 +225,7 @@ public final class AuroraCommands {
 
     private static Player findPlayer(String name){
         for(Player p : mindustry.gen.Groups.player){
-            if(p.isValid() && p.name.equalsIgnoreCase(name)) return p;
+            if(p.isAdded() && p.name.equalsIgnoreCase(name)) return p;
         }
         return null;
     }

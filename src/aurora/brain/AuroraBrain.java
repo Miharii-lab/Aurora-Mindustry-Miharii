@@ -88,7 +88,7 @@ public final class AuroraBrain {
         }
         if(profile.task == AuroraTask.MINE_RESOURCE){
             mindustry.type.Item targetItem = profile.recoveryItemId >= 0 ? mindustry.Vars.content.item(profile.recoveryItemId) : MiningSystem.preferredResource(unit);
-            if(targetItem == null || !MiningSystem.hasOre(unit, targetItem)){
+            if(targetItem == null || MiningSystem.ore(unit, targetItem) == null){
                 if(profile.recoveryTask != AuroraTask.FOLLOW){
                     profile.learning.record("recovery:" + (targetItem == null ? "unknown" : targetItem.name), false);
                 }
@@ -115,7 +115,7 @@ public final class AuroraBrain {
                     // the missing resource and return to the same proposal instead of abandoning it.
                     if(profile.pendingProposal.nextRequiredBlock() != null){
                         mindustry.type.Item needed = MiningSystem.missingRequirement(unit, profile.pendingProposal.nextRequiredBlock());
-                        if(needed != null && MiningSystem.hasOre(unit, needed)){
+                        if(needed != null && MiningSystem.ore(unit, needed) != null){
                             profile.recoveryTask = AuroraTask.BUILD;
                             profile.recoveryItemId = needed.id;
                             profile.task = AuroraTask.MINE_RESOURCE;

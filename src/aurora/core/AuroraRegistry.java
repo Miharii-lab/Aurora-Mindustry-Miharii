@@ -45,7 +45,7 @@ public final class AuroraRegistry {
         int alliedPlayers = 0;
         Player onlyAllied = null;
         for(Player p : mindustry.gen.Groups.player){
-            if(!p.isValid() || p.team() != unit.team()) continue;
+            if(!p.isAdded() || p.team() != unit.team()) continue;
             alliedPlayers++;
             onlyAllied = p;
             float dx = p.x - unit.x, dy = p.y - unit.y;
@@ -75,7 +75,7 @@ public final class AuroraRegistry {
         int id = profile(unit).ownerId;
         if(id < 0) return null;
         for(Player p : mindustry.gen.Groups.player){
-            if(p.isValid() && p.id() == id) return p;
+            if(p.isAdded() && p.id() == id) return p;
         }
         return null;
     }
@@ -124,10 +124,10 @@ public final class AuroraRegistry {
 
     public static void cleanup(){
         IntSeq dead = new IntSeq();
-        profiles.each((id, ignored) -> {
-            Unit u = unit.getByID(id);
-            if(u == null || !u.isValid() || !isAurora(u)) dead.add(id);
-        });
+        for(IntMap.Entry<AuroraProfile> entry : profiles){
+            Unit u = unit.getByID(entry.key);
+            if(u == null || !u.isValid() || !isAurora(u)) dead.add(entry.key);
+        }
         for(int i = 0; i < dead.size; i++) profiles.remove(dead.get(i));
     }
 
