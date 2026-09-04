@@ -43,9 +43,10 @@ allprojects{
     tasks.withType<JavaCompile>().configureEach{
         options.encoding = "UTF-8"
         options.compilerArgs.add("-Xlint:-options")
-        // Allow annotation processors that rely on internal javac APIs (required by EntityAnno)
-        options.compilerArgs.addAll(listOf("--add-exports", "jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED"))
-        options.compilerArgs.addAll(listOf("--add-opens", "jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED"))
+        // Fork the javac process and pass module exports/open flags to the compiler JVM so
+        // annotation processors that use internal javac APIs (EntityAnno) can run under JDK17+
+        options.isFork = true
+        options.forkOptions.jvmArgs.addAll(listOf("--add-exports=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED", "--add-opens=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED"))
         sourceCompatibility = "17"
         targetCompatibility = "17"
     }
