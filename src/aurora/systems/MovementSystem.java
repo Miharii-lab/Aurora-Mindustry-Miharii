@@ -2,7 +2,7 @@ package aurora.systems;
 
 import arc.math.Mathf;
 import arc.math.geom.Vec2;
-import mindustry.ai.types.AIController;
+import mindustry.entities.units.AIController;
 import mindustry.gen.Player;
 import mindustry.gen.Unit;
 
